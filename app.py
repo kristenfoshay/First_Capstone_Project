@@ -14,7 +14,7 @@ def homepage():
     return render_template('home-anon.html')
 
 @app.route('/signup', methods=["GET", "POST"])
-def signup():git 
+def signup():
     """Handle user signup.
 
     Create new user and add to DB. Redirect to home page.
