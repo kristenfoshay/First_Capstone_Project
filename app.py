@@ -10,9 +10,5 @@ toolbar = DebugToolbarExtension(app)
 
 @app.route('/')
 def homepage():
-    """Show homepage:
 
-    - anon users: no messages
-    - logged in: 100 most recent messages of followed_users
-    """
     return render_template('home-anon.html')
