@@ -89,3 +89,10 @@ def login():
         flash("Invalid credentials.", 'danger')
 
     return render_template('users/login.html', form=form)
+
+@app.route('/logout')
+def logout(): 
+
+    do_logout()
+    flash(f"Goodbye!", "success")
+    return redirect("/login")
