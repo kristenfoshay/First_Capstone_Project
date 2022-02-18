@@ -11,6 +11,25 @@ toolbar = DebugToolbarExtension(app)
 @app.route('/')
 def homepage():
 
+    if g.user:
+       ## following_ids = [f.id for f in g.user.following] + [g.user.id]
+
+       ## messages = (Message
+               ##     .query
+               ##     .filter(Message.user_id.in_(following_ids))
+              ##      .order_by(Message.timestamp.desc())
+              ##      .limit(100)
+              ##      .all())
+       ## liked_msg_ids = [msg.id for msg in g.user.likes]      
+      ##  not_followed_yet = (Message
+                 ##   .query
+                ##    .order_by(Message.timestamp.desc())
+                ##    .limit(100)
+                ##    .all())
+
+        return render_template('home.html')
+
+
     return render_template('home-anon.html')
 
 @app.route('/signup', methods=["GET", "POST"])
