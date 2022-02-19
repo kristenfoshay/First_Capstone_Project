@@ -60,8 +60,8 @@ def homepage():
 
         return render_template('home.html')
 
-
-    return render_template('home-anon.html')
+    else:
+        return render_template('home-anon.html')
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
