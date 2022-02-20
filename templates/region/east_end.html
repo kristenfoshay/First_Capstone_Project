@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+
+    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside">
+      <div class="card user-card">
+        <div>
+          <div class="image-wrapper">
+            <img src="{{ g.user.header_image_url }}" alt="" class="card-hero">
+          </div>
+ 
+            <p>{{ g.user.username }}</p>
+         
+          <ul class="user-stats nav nav-pills">
+
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+<h1>What area of East End Toronto are you in?</h1>
+<p>The Beaches</p>
+<a href="/Leslieville">Leslieville</a>
+<p>East Chinatown</p>
+<p>East Danforth</p>
+<p>Gerrard Street East</p>
+<p>Greektown</p>
+<p>Main Square</p>
+<p>Playter Estates</p>
+<p>Port Lands</p>
+<p>Riverdale</p>
+<p>Upper Beaches</p>
+<p>Villiers Island</p>
+
+{% endblock %}

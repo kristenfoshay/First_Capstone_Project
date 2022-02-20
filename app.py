@@ -127,3 +127,7 @@ def logout():
     do_logout()
     flash(f"Goodbye!", "success")
     return redirect("/login")
+
+@app.route('/East_End')
+def eastend():
+    return render_template('region/east_end.html')
