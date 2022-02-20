@@ -88,7 +88,7 @@ class User(db.Model):
 class Post(db.Model):
     """An individual message ("warble")."""
 
-    __tablename__ = 'messages'
+    __tablename__ = 'posts'
 
     id = db.Column(
         db.Integer,
@@ -118,7 +118,28 @@ class Post(db.Model):
         nullable=False,
     )
 
-    user = db.relationship('User')
+class Board(db.Model):
+   
+    __tablename__ = 'boards'
+
+    id = db .Column(
+        db.Integer,
+        primary_key=True,
+    )
+
+    name = db.Column(
+        db.Text,
+        nullable=False,
+        unique=True,
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow(),
+    )
+
+
 
 ## at the end
 
