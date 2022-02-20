@@ -128,6 +128,10 @@ def logout():
     flash(f"Goodbye!", "success")
     return redirect("/login")
 
-@app.route('/East_End')
+@app.route('/eastend')
 def eastend():
-    return render_template('region/east_end.html')
+    return render_template('region/east-end.html')
+
+@app.route('/leslieville')
+def eastend():
+    return render_template('east-end/leslieville.html')
