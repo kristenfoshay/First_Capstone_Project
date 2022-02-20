@@ -134,4 +134,4 @@ def eastend():
 
 @app.route('/leslieville')
 def leslieville():
-    return render_template('east-end-regions/leslieville.html')
+    return render_template('region/leslieville.html')
