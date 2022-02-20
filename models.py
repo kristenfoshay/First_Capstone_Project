@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
@@ -84,6 +85,40 @@ class User(db.Model):
 
         return False
 
+class Post(db.Model):
+    """An individual message ("warble")."""
+
+    __tablename__ = 'messages'
+
+    id = db.Column(
+        db.Integer,
+        primary_key=True,
+    )
+
+    board_id = db.Column(
+        db.Integer,
+        db.ForeignKey('board.id', ondelete='CASCADE'),
+        nullable=False,
+    )
+
+    text = db.Column(
+        db.String(140),
+        nullable=False,
+    )
+
+    timestamp = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow(),
+    )
+
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey('users.id', ondelete='CASCADE'),
+        nullable=False,
+    )
+
+    user = db.relationship('User')
 
 ## at the end
 
