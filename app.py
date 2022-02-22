@@ -134,4 +134,24 @@ def eastend():
 
 @app.route('/leslieville')
 def leslieville():
+    ##area = Area.query.get(1)
     return render_template('east-end-regions/leslieville.html')
+
+@app.route('/looking')
+def looking():
+    return render_template('')
+
+@app.route("/map_data", methods=["GET", "POST"])
+def post_map_data():
+    if request.method == "POST":
+
+        longlat=request.form['longlat']
+        area=request.form['area']
+        board=request.form['board-id']
+
+    ###lat = request.args["lat"]
+
+    ### response data (lat, long) will be accessed and put in SQLAlchemy database
+    ### to simulate this, we will route to HTML showing the data using Jinja. 
+
+        return render_template("map_Test.html", longlat=longlat, area=area, board=board)
