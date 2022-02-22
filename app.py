@@ -149,6 +149,8 @@ def post_map_data():
         area=request.form['area']
         board=request.form['board-id']
 
+        
+
     ###lat = request.args["lat"]
 
     ### response data (lat, long) will be accessed and put in SQLAlchemy database

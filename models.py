@@ -67,14 +67,7 @@ class User(db.Model):
 
     @classmethod
     def authenticate(cls, username, password):
-        """Find user with `username` and `password`.
-
-        This is a class method (call it on the class, not an individual user.)
-        It searches for a user whose password hash matches this password
-        and, if it finds such a user, returns that user object.
-
-        If can't find matching user (or if password is wrong), returns False.
-        """
+  
 
         user = cls.query.filter_by(username=username).first()
 
@@ -85,42 +78,10 @@ class User(db.Model):
 
         return False
 
-class Post(db.Model):
-    """An individual message ("warble")."""
-
-    __tablename__ = 'posts'
-
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-    )
-
-    board_id = db.Column(
-        db.Integer,
-        db.ForeignKey('board.id', ondelete='CASCADE'),
-        nullable=False,
-    )
-
-    text = db.Column(
-        db.String(140),
-        nullable=False,
-    )
-
-    timestamp = db.Column(
-        db.DateTime,
-        nullable=False,
-        default=datetime.utcnow(),
-    )
-
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id', ondelete='CASCADE'),
-        nullable=False,
-    )
 
 class Board(db.Model):
    
-    __tablename__ = 'boards'
+    __tablename__ = 'board'
 
     id = db .Column(
         db.Integer,
@@ -133,13 +94,59 @@ class Board(db.Model):
         unique=True,
     )
 
+##class Area(db.Model):
+
+    ## __tablename__ = 'area'
+    
+##id = db .Column(
+        ##db.Integer,
+       ## primary_key=True,
+    ##)
+
+##name = db.Column(
+        ##db.Text,
+       ## nullable=False,
+        ##unique=True,
+   ## )
+
+class Post(db.Model):
+
+    __tablename__ = 'post'
+    
+    id = db .Column(
+        db.Integer,
+        primary_key=True,
+    )
+
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey('users.id', ondelete='CASCADE'),
+        nullable=False,
+    )
+
+    board_id = db .Column(
+        db.Integer,
+        db.ForeignKey('board.id', ondelete='CASCADE'),
+        nullable=False,
+    )
+
+    lat = db.Column(
+        db.Integer,
+        nullable=False,
+        unique=True,
+    )
+
+    long = db.Column(
+        db.Integer,
+        nullable=False,
+        unique=True,
+    )
+
     timestamp = db.Column(
         db.DateTime,
         nullable=False,
         default=datetime.utcnow(),
     )
-
-
 
 ## at the end
 
