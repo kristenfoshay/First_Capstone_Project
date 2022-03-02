@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id='map_canvas'></div>
+    
+
+    <h1>You've selected {{neighbourhood.name}}!</h1>
+
+    <p>In the map below, please zoom in as much as possible and drag and drop the marker in the exact spot where you lost your pet or saw the stray pet you sighted. Being as detailed as possible will make it more likely that you or others will find your lost pets.</p>
+
+      <div id="map" style="width: 100%; height: 400px;"></div>
+
+
+    <p>Are you looking for a lost pet or reporting a sighting?</p>
+    <form action="/map_data" method="post">
+          
+          <input hidden type="text" id="lat" name="lat" value=>
+          <input hidden type="text" id="long" name="long" value=>
+          <input hidden type="text" id="neighbourhood" name="neighbourhood" value="{{neighbourhood.id}}">
+          <input type="radio" id="looking" name="board-id" value=1>
+          <label for="looking">Looking for a Lost Pet</label><br>
+          <input type="radio" id="reporting" name="board-id" value=2>
+          <label for="reporting">Reporting a Sighting</label><br>
+          <br>
+          <label for="text-input">Describe the pet that you lost or the stray pet that you saw roaming the area. Be as detailed as you can so the pet can be found!</label><br>
+          <input type="textarea" id="text-input" name="text-input" style="width:100%" value=>
+          
+          <br><br>
+          <input type="submit" value="Submit">
+        </form> 
+       
+
+        
+     
+<script src="https://unpkg.com/jquery"></script>   
+<script src="static/map.js"></script>  
+{% endblock %}
+
+    

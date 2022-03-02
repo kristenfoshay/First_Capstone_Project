@@ -94,20 +94,22 @@ class Board(db.Model):
         unique=True,
     )
 
-##class Area(db.Model):
-
-    ## __tablename__ = 'area'
     
-##id = db .Column(
-        ##db.Integer,
-       ## primary_key=True,
-    ##)
+class Neighbourhood(db.Model):
 
-##name = db.Column(
-        ##db.Text,
-       ## nullable=False,
-        ##unique=True,
-   ## )
+    __tablename__ = 'neighbourhood'
+    
+    id = db .Column(
+        db.Integer,
+        primary_key=True,
+    )
+
+    name = db.Column(
+        db.Text,
+        nullable=False,
+        unique=True,
+    )
+
 
 class Post(db.Model):
 
@@ -130,15 +132,27 @@ class Post(db.Model):
         nullable=False,
     )
 
-    lat = db.Column(
+    neighbourhood_id = db .Column(
         db.Integer,
+        db.ForeignKey('neighbourhood.id', ondelete='CASCADE'),
+        nullable=False,
+    )
+
+    text = db.Column(
+        db.Text,
         nullable=False,
         unique=True,
     )
 
+    lat = db.Column(
+        db.Float,
+        nullable=True,
+        unique=True,
+    )
+
     long = db.Column(
-        db.Integer,
-        nullable=False,
+        db.Float,
+        nullable=True,
         unique=True,
     )
 

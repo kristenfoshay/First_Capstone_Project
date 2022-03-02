@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, session, g, 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 from forms import UserAddForm, LoginForm
-from models import db, connect_db, User
+from models import db, connect_db, User, Post, Neighbourhood
 
 CURR_USER_KEY = "curr_user"
 
@@ -17,6 +17,8 @@ app.config['SECRET_KEY'] = "it's a secret"
 toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
+db.create_all()
+
 
 @app.before_request
 def add_user_to_g():
@@ -134,26 +136,26 @@ def eastend():
 
 @app.route('/leslieville')
 def leslieville():
-    ##area = Area.query.get(1)
-    return render_template('east-end-regions/leslieville.html')
+    neighbourhood = Neighbourhood.query.get(1)
 
-@app.route('/looking')
-def looking():
-    return render_template('')
+    return render_template('east-end-regions/neighbourhood.html', neighbourhood=neighbourhood)
 
 @app.route("/map_data", methods=["GET", "POST"])
 def post_map_data():
     if request.method == "POST":
 
-        longlat=request.form['longlat']
-        area=request.form['area']
+        lat=request.form['lat']
+        long=request.form['long']
+        neighbourhood=request.form['neighbourhood']
         board=request.form['board-id']
+        text=request.form['text-input']
+        user=g.user.id
 
-        
+        post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long)
+        db.session.add(post)
+        db.session.commit()
 
-    ###lat = request.args["lat"]
 
-    ### response data (lat, long) will be accessed and put in SQLAlchemy database
-    ### to simulate this, we will route to HTML showing the data using Jinja. 
+    return render_template("map_Test.html", lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user)
 
-        return render_template("map_Test.html", longlat=longlat, area=area, board=board)
+    

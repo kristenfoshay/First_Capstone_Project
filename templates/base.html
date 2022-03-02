@@ -10,7 +10,8 @@
   <script src="https://unpkg.com/jquery"></script>
   <script src="https://unpkg.com/popper"></script>
   <script src="https://unpkg.com/bootstrap"></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwWjTU22MT1qaiHi-xrjaBeGOnb_0b1qU"></script>
+  <script src="https://cdn.what3words.com/javascript-components@4-latest/dist/what3words/what3words.js?key=QRWFGIU2"></script>
   <link rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link rel="stylesheet" href="/static/stylesheets/style.css">
@@ -32,9 +33,7 @@
       <li><a href="/login">Log in</a></li>
       {% else %}
       <li>
-        <a href="/users/{{ g.user.id }}">
-          <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
-        </a>
+          {{ g.user.username }}
       </li>
       <li><a href="/logout">Log out</a></li>
       {% endif %}
