@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<ul style="list-style: none;"> 
+{% for post in posts %}
+<li> 
+<a href="/posts/{{post.id}}" class "message-link">{{post.timestamp}} {{post.board.name}} {{post.title}}</a>
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

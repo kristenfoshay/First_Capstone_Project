@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
+
 class User(db.Model):
     """User in the system."""
 
@@ -94,6 +95,8 @@ class Board(db.Model):
         unique=True,
     )
 
+    posts = db.relationship('Post', backref='board')
+
     
 class Neighbourhood(db.Model):
 
@@ -105,10 +108,15 @@ class Neighbourhood(db.Model):
     )
 
     name = db.Column(
-        db.Text,
-        nullable=False,
+        db.String,
+        nullable=True,
         unique=True,
     )
+
+    posts = db.relationship('Post', backref='neighbourhood')
+
+    def __repr__(self):
+        return f'<Neighbourhood: {self.name}>'
 
 
 class Post(db.Model):
@@ -138,22 +146,24 @@ class Post(db.Model):
         nullable=False,
     )
 
-    text = db.Column(
-        db.Text,
+    title = db.Column(
+        db.String,
         nullable=False,
-        unique=True,
+    )
+
+    text = db.Column(
+        db.String,
+        nullable=False,
     )
 
     lat = db.Column(
         db.Float,
         nullable=True,
-        unique=True,
     )
 
     long = db.Column(
         db.Float,
         nullable=True,
-        unique=True,
     )
 
     timestamp = db.Column(
@@ -161,6 +171,9 @@ class Post(db.Model):
         nullable=False,
         default=datetime.utcnow(),
     )
+
+    def __repr__(self):
+        return f'<Post: {self.timestamp} {self.title}>'
 
 ## at the end
 

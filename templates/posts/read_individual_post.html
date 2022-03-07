@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <p><a href="/neighbourhoods/{{post.neighbourhood_id}}/read_posts">Do you want to read Read Other Posts for this Neighbourhood? Click Here.</a><br>(includes both lost pet reports and reports of sightings)</p>
+    <div id='map_canvas'></div>
+
+      <div id="map" style="width: 100%; height: 400px;"></div>
+
+	  <p class="example">Type of Post:{{post.board.name}}</p> <p class="example">The title of Post: {{post.title}}</p> <p class="example">The Latitude and Longitude of the Location: {{lat}}, {{long}} </p> <p class="example">The Text of the Post: {{post.text}}</p> 
+    <meta id="map-data"  data-long="{{long}}" data-lat="{{lat}}"> <!-- so it can be utilized by external js -->
+
+    <script>
+    let data_lat = {{ lat | tojson }}; 
+    let data_long = {{ long | tojson }};
+    let a = data_lat;
+    let b = data_long;
+    let myLatlng = new google.maps.LatLng(a, b);
+    let map = new google.maps.Map(document.getElementById('map'), {
+	      center : myLatlng,
+	      zoom   : 18
+    });
+
+    let marker = new google.maps.Marker({
+	      position  : myLatlng,
+	      map       : map,
+	      draggable : false,
+    });
+    </script> 
+
+<script src="https://unpkg.com/jquery"></script>   
+<script src="static/map3.js"></script> 
+{% endblock %}

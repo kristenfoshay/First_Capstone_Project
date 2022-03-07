@@ -5,7 +5,9 @@
 
     <h1>You've selected {{neighbourhood.name}}!</h1>
 
-    <p>In the map below, please zoom in as much as possible and drag and drop the marker in the exact spot where you lost your pet or saw the stray pet you sighted. Being as detailed as possible will make it more likely that you or others will find your lost pets.</p>
+    <p><a href="/neighbourhoods/{{neighbourhood.id}}/read_posts">Do you want to read Read Posts for this Neighbourhood? Click Here.</a><br>(includes both lost pet reports and reports of sightings)</p>
+
+    <p>To create a post follow these directions: Please zoom in as much as possible and drag and drop the marker in the exact spot where you lost your pet or saw the stray pet you sighted. Being as detailed as possible will make it more likely that you or others will find your lost pets.</p>
 
       <div id="map" style="width: 100%; height: 400px;"></div>
 
@@ -21,8 +23,12 @@
           <input type="radio" id="reporting" name="board-id" value=2>
           <label for="reporting">Reporting a Sighting</label><br>
           <br>
-          <label for="text-input">Describe the pet that you lost or the stray pet that you saw roaming the area. Be as detailed as you can so the pet can be found!</label><br>
-          <input type="textarea" id="text-input" name="text-input" style="width:100%; height: 200px;" value=>
+          <label for="title">
+            Title for your Post:</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Example: Pink Flamingo lost at Corner of Leslie and Queen" required="" value=>
+          <label for="textarea">Describe the pet that you lost or the stray pet that you saw roaming the area. Be as detailed as you can so the pet can be found!</label><br>
+          
+          <textarea class="form-control" type="textarea" name="text-input" id="text-input" placeholder="Example: Hi, My Pink Flamingo ran away from me at the corner of Leslie and Queen. He is 2 years old and very timid. Please do not yell at him. He will run away." maxlength="6000" rows="7"></textarea>
           
           <br><br>
           <input type="submit" value="Submit">

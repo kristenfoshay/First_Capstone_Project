@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, session, g, 
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 from forms import UserAddForm, LoginForm
-from models import db, connect_db, User, Post, Neighbourhood
+from models import db, connect_db, User, Post, Neighbourhood, Board
 
 CURR_USER_KEY = "curr_user"
 
@@ -45,20 +45,6 @@ def do_logout():
 def homepage():
 
     if g.user:
-       ## following_ids = [f.id for f in g.user.following] + [g.user.id]
-
-       ## messages = (Message
-               ##     .query
-               ##     .filter(Message.user_id.in_(following_ids))
-              ##      .order_by(Message.timestamp.desc())
-              ##      .limit(100)
-              ##      .all())
-       ## liked_msg_ids = [msg.id for msg in g.user.likes]      
-      ##  not_followed_yet = (Message
-                 ##   .query
-                ##    .order_by(Message.timestamp.desc())
-                ##    .limit(100)
-                ##    .all())
 
         return render_template('home.html')
 
@@ -67,15 +53,7 @@ def homepage():
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
-    """Handle user signup.
 
-    Create new user and add to DB. Redirect to home page.
-
-    If form not valid, present form.
-
-    If the there already is a user with that username: flash message
-    and re-present form.
-    """
     if CURR_USER_KEY in session:
         del session[CURR_USER_KEY]
     form = UserAddForm()
@@ -149,13 +127,36 @@ def post_map_data():
         neighbourhood=request.form['neighbourhood']
         board=request.form['board-id']
         text=request.form['text-input']
+        title=request.form['title']
         user=g.user.id
 
-        post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long)
+        post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long, title=title)
         db.session.add(post)
         db.session.commit()
 
+        type = Board.query.get(board)
+        
 
-    return render_template("map_Test.html", lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user)
+    return render_template("/posts/post_data.html", type=type, title=title, lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user)
+
+@app.route('/neighbourhoods/<int:neighbourhood_id>/read_posts')
+def read_posts(neighbourhood_id):
+    ngh = Neighbourhood.query.get_or_404(neighbourhood_id)
+    posts = ngh.posts
+    
+    return render_template("/posts/read_posts.html", posts=posts)
+
+@app.route('/posts/<int:post_id>')
+def individual_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    lat = post.lat
+    long = post.long
+
+    return render_template("/posts/read_individual_post.html", post=post, lat=lat, long=long)
+
+
+    
+
+    
 
     
