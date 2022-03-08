@@ -28,11 +28,6 @@ class User(db.Model):
         unique=True,
     )
 
-    image_url = db.Column(
-        db.Text,
-        default="/static/images/default-pic.png",
-    )
-
     location = db.Column(
         db.Text, 
         nullable=True,
@@ -43,11 +38,13 @@ class User(db.Model):
         nullable=False,
     )
 
+    posts = db.relationship('Post', backref='users')
+
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
 
     @classmethod
-    def signup(cls, username, email, location, image_url, password, ):
+    def signup(cls, username, email, location, password, ):
         """Sign up user.
         Hashes password and adds user to system.
         """
@@ -58,7 +55,6 @@ class User(db.Model):
             username=username,
             email=email,
             location=location,
-            image_url=image_url,
             password=hashed_pwd,
             
         )

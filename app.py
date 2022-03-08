@@ -19,7 +19,6 @@ toolbar = DebugToolbarExtension(app)
 connect_db(app)
 db.create_all()
 
-
 @app.before_request
 def add_user_to_g():
     """If we're logged in, add curr user to Flask global."""
@@ -45,8 +44,10 @@ def do_logout():
 def homepage():
 
     if g.user:
+        user = g.user
+        posts = user.posts
 
-        return render_template('home.html')
+        return render_template('home.html', posts=posts)
 
     else:
         return render_template('home-anon.html')
@@ -65,7 +66,6 @@ def signup():
                 username=form.username.data,
                 email=form.email.data,
                 location=form.location.data,
-                image_url=form.image_url.data or User.image_url.default.arg,
                 password=form.password.data,
                 
             )
@@ -107,6 +107,11 @@ def logout():
     do_logout()
     flash(f"Goodbye!", "success")
     return redirect("/login")
+
+@app.route('/region')
+def region():
+    return render_template('region/region.html')
+
 
 @app.route('/eastend')
 def eastend():
@@ -153,6 +158,9 @@ def individual_post(post_id):
     long = post.long
 
     return render_template("/posts/read_individual_post.html", post=post, lat=lat, long=long)
+
+
+
 
 
     
