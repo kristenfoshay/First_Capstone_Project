@@ -159,6 +159,15 @@ def individual_post(post_id):
 
     return render_template("/posts/read_individual_post.html", post=post, lat=lat, long=long)
 
+@app.route('/posts/<int:post_id>/delete')
+def post_destroy(post_id):
+    pst = Post.query.get_or_404(post_id)
+
+    db.session.delete(pst)
+    db.session.commit()
+
+    return redirect("/")
+
 
 
 

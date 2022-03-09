@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<font face="Cabin" size="4px">
 <p><a href='/region'>I'd like to create a post or read posts from other users. </a></p>
-
-<p>My Posts:</p>
+</font>
+<font face="Cabin" size="4px"><p>My Posts:</p></font>
+<font face="Cabin" size="3px">
 <ul style="list-style: none;"> 
   {% for post in posts %}
   <li> 
@@ -11,7 +12,8 @@
   </li>
   {% endfor %}
   </ul>
-
+ 
+</font>
 
   
 

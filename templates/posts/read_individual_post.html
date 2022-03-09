@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<font face="Cabin" size="3px">
     <p><a href="/neighbourhoods/{{post.neighbourhood_id}}/read_posts">Do you want to read Read Other Posts for this Neighbourhood? Click Here.</a><br>(includes both lost pet reports and reports of sightings)</p>
     <div id='map_canvas'></div>
 
       <div id="map" style="width: 100%; height: 400px;"></div>
 
 	  <p class="example">Type of Post:{{post.board.name}}</p> <p class="example">The title of Post: {{post.title}}</p> <p class="example">The Latitude and Longitude of the Location: {{lat}}, {{long}} </p> <p class="example">The Text of the Post: {{post.text}}</p> 
-    <meta id="map-data"  data-long="{{long}}" data-lat="{{lat}}"> <!-- so it can be utilized by external js -->
+    <a href="/posts/{{post.id}}/delete" class="btn btn-primary">Delete</a>
 
+    <meta id="map-data"  data-long="{{long}}" data-lat="{{lat}}"> <!-- so it can be utilized by external js -->
+</font>
     <script>
     let data_lat = {{ lat | tojson }}; 
     let data_long = {{ long | tojson }};
