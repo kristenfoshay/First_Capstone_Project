@@ -19,6 +19,10 @@
     text-shadow: 0 0 8px #66757f;
   }
 
+  .navbar-header {
+    opacity: 0.9;
+  }
+
   .navbar-brand > img {
     display: inline-block;
     margin-bottom: 2px;

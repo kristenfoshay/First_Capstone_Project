@@ -168,6 +168,11 @@ class Post(db.Model):
         default=datetime.utcnow(),
     )
 
+    image_url = db.Column(
+        db.Text,
+        nullable=True
+    )
+
     def __repr__(self):
         return f'<Post: {self.timestamp} {self.title}>'
 

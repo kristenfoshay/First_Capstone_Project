@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 <font face="Cabin" size="3px">
+
+    <font face="Lobster, cursive" size="5px"><p>Users looking for Pets</p></font>
 <ul style="list-style: none;"> 
-{% for post in posts %}
+{% for post in posts if post.board.id == 1 %}
 <li> 
 <a href="/posts/{{post.id}}" class "message-link">{{post.timestamp}} {{post.board.name}} {{post.title}}</a>
 </li>
 {% endfor %}
 </ul>
+
+<font face="Lobster, cursive" size="5px"><p>Users Reporting Pet Sightings</p></font>
+<ul style="list-style: none;"> 
+{% for post in posts if post.board.id != 1 %}
+<li> 
+<a href="/posts/{{post.id}}" class "message-link">{{post.timestamp}} {{post.board.name}} {{post.title}}</a>
+</li>
+{% endfor %}
+</ul>
+
+<p><a href="/" class "message-link">I want to view or delete my own posts.</a></p>
 </font>
 {% endblock %}

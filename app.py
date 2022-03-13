@@ -133,22 +133,23 @@ def post_map_data():
         board=request.form['board-id']
         text=request.form['text-input']
         title=request.form['title']
+        url=request.form['imageurl']
         user=g.user.id
 
-        post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long, title=title)
+        post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long, title=title, image_url=url)
         db.session.add(post)
         db.session.commit()
 
         type = Board.query.get(board)
         
 
-    return render_template("/posts/post_data.html", type=type, title=title, lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user)
+    return render_template("/posts/post_data.html", type=type, title=title, lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user, url=url)
 
 @app.route('/neighbourhoods/<int:neighbourhood_id>/read_posts')
 def read_posts(neighbourhood_id):
     ngh = Neighbourhood.query.get_or_404(neighbourhood_id)
     posts = ngh.posts
-    
+
     return render_template("/posts/read_posts.html", posts=posts)
 
 @app.route('/posts/<int:post_id>')
@@ -158,6 +159,15 @@ def individual_post(post_id):
     long = post.long
 
     return render_template("/posts/read_individual_post.html", post=post, lat=lat, long=long)
+
+    
+@app.route('/myposts/<int:post_id>')
+def my_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    lat = post.lat
+    long = post.long
+
+    return render_template("/posts/read_my_post.html", post=post, lat=lat, long=long)
 
 @app.route('/posts/<int:post_id>/delete')
 def post_destroy(post_id):
