@@ -8,26 +8,10 @@
 
 	  <p class="example">Type of Post:{{post.board.name}}</p> <p class="example">The title of Post: {{post.title}}</p> <p class="example">The Latitude and Longitude of the Location: {{lat}}, {{long}} </p> <p class="example">The Text of the Post: {{post.text}}</p><p><img src="{{post.image_url}}"></p> 
 
-    <meta id="map-data"  data-long="{{long}}" data-lat="{{lat}}"> <!-- so it can be utilized by external js -->
+    <meta id="map-data"  data-long={{long}} data-lat={{lat}}> <!-- so it can be utilized by external js -->
 </font>
-    <script>
-    let data_lat = {{ lat | tojson }}; 
-    let data_long = {{ long | tojson }};
-    let a = data_lat;
-    let b = data_long;
-    let myLatlng = new google.maps.LatLng(a, b);
-    let map = new google.maps.Map(document.getElementById('map'), {
-	      center : myLatlng,
-	      zoom   : 18
-    });
-
-    let marker = new google.maps.Marker({
-	      position  : myLatlng,
-	      map       : map,
-	      draggable : false,
-    });
-    </script> 
+    
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
-<script src="static/map3.js"></script> 
+<script src="/static/map3.js"></script> 
 {% endblock %}
