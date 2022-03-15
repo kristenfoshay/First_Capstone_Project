@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, flash, redirect, session, g, abort
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
@@ -8,7 +9,7 @@ CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///flask-heroku')
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
