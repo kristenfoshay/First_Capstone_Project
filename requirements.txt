@@ -66,7 +66,7 @@ SecretStorage==2.3.1
 service-identity==18.1.0
 simplejson==3.16.0
 six==1.14.0
-sos==4.1
+sos==0.22.7
 SQLAlchemy==1.4.28
 ssh-import-id==5.10
 traitlets==4.3.3
