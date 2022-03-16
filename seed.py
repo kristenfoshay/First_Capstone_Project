@@ -4,7 +4,7 @@ from models import db, connect_db, User, Post, Neighbourhood, Board
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///ranger') 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://ranger') 
 
 connect_db(app)
 db.create_all()
