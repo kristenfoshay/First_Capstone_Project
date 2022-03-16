@@ -9,7 +9,7 @@ CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgres://pjfrdpjdarrvry:702a632136461cf8477b2fd91330ba8a7f33555e096f4990d77b60026fc409a0@ec2-52-44-209-165.compute-1.amazonaws.com:5432/d8fja8mobj0da1') 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///ranger') 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
