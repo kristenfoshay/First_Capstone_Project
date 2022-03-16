@@ -1,9 +1,12 @@
 from csv import DictReader
 from app import db
-from models import Board, Neighbourhood
+from models import db, connect_db, User, Post, Neighbourhood, Board 
 
+app = Flask(__name__)
 
-db.drop_all()
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql:///ranger') 
+
+connect_db(app)
 db.create_all()
 
 with open('generator/board.csv') as board:
