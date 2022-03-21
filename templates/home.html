@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<font face="Cabin" size="4px">
+<p><a href='/region'>I'd like to create a post or read posts from other users. </a></p>
+</font>
+<font face="Lobster, cursive" size="5px"><p>My Posts:</p></font>
+<font face="Cabin" size="3px">
+<ul style="list-style: none;"> 
+  {% for post in posts %}
+  <li> 
+  <a href="/myposts/{{post.id}}" class "message-link">{{post.timestamp}} {{post.board.name}} {{post.title}}</a>
+  </li>
+  {% endfor %}
+  </ul>
+ 
+</font>
+
+  
+
+
+{% endblock %}

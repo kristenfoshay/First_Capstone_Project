@@ -3,42 +3,53 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Warbler</title>
+  
 
   <link rel="stylesheet"
         href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
   <script src="https://unpkg.com/jquery"></script>
   <script src="https://unpkg.com/popper"></script>
   <script src="https://unpkg.com/bootstrap"></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwWjTU22MT1qaiHi-xrjaBeGOnb_0b1qU"></script>
+  <script src="https://cdn.what3words.com/javascript-components@4-latest/dist/what3words/what3words.js?key=QRWFGIU2"></script>
   <link rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet'>
   <link rel="stylesheet" href="/static/stylesheets/style.css">
   <link rel="shortcut icon" href="/static/favicon.ico">
-</head>
 
+</head>
 <body class="{% block body_class %}{% endblock %}">
 <nav class="navbar navbar-expand">
   <div class="container-fluid">
     <div class="navbar-header">
-/// ranger logo here
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+          <img src="/static/images/ranger-logo.png" alt="logo">
+          <span><font face="Lobster, cursive" size="10px" color="#AC652F">Ranger</font></span>
+        </a>
+<font face="Cabin" size="5px">
+
     </div>
     <ul class="nav navbar-nav navbar-right">
       {% if request.endpoint != None %}
 
       {% endif %}
       {% if not g.user %}
-      <li><a href="/signup">Sign up</a></li>
-      <li><a href="/login">Log in</a></li>
+      <ul style="list-style: none;"> 
+      <a href="/login" class="btn btn-primary">Log in</a>
+      </ul>
       {% else %}
-      <li>
-        <a href="/users/{{ g.user.id }}">
-          <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
-        </a>
-      </li>
-      <li><a href="/logout">Log out</a></li>
+ 
+      <a href="/logout" class="btn btn-primary">Log out</a>
+      
+      
       {% endif %}
     </ul>
+  </font>
   </div>
 </nav>
 <div class="container">
