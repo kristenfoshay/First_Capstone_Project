@@ -9,8 +9,8 @@ CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1) or  'postgresql:///ranger'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1) or  'postgresql:///ranger'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -30,6 +30,8 @@ def add_user_to_g():
 
     else:
         g.user = None
+        
+
 
 def do_login(user):
     """Log in user."""
@@ -112,73 +114,93 @@ def logout():
 
 @app.route('/region')
 def region():
-    return render_template('region/region.html')
+    if g.user:
+        return render_template('region/region.html')
+    else:
+        return redirect("/")
 
 
 @app.route('/eastend')
 def eastend():
-    return render_template('region/east-end.html')
+    if g.user:
+        return render_template('region/east-end.html')
+    else:
+        return redirect("/")
 
 @app.route('/leslieville')
 def leslieville():
-    neighbourhood = Neighbourhood.query.get(1)
-
-    return render_template('east-end-regions/neighbourhood.html', neighbourhood=neighbourhood)
+    if g.user:
+        neighbourhood = Neighbourhood.query.get(1)
+        return render_template('east-end-regions/neighbourhood.html', neighbourhood=neighbourhood)
+    else:
+        return redirect("/")
 
 @app.route("/map_data", methods=["GET", "POST"])
 def post_map_data():
-    if request.method == "POST":
+    if g.user:
+        if request.method == "POST":
 
-        lat=request.form['lat']
-        long=request.form['long']
-        neighbourhood=request.form['neighbourhood']
-        board=request.form['board-id']
-        text=request.form['text-input']
-        title=request.form['title']
-        url=request.form['imageurl']
-        user=g.user.id
+            lat=request.form['lat']
+            long=request.form['long']
+            neighbourhood=request.form['neighbourhood']
+            board=request.form['board-id']
+            text=request.form['text-input']
+            title=request.form['title']
+            url=request.form['imageurl']
+            user=g.user.id
 
-        post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long, title=title, image_url=url)
-        db.session.add(post)
-        db.session.commit()
+            post = Post(user_id=user, board_id=board, neighbourhood_id=neighbourhood, text=text, lat=lat, long=long, title=title, image_url=url)
+            db.session.add(post)
+            db.session.commit()
 
-        type = Board.query.get(board)
+            type = Board.query.get(board)
         
 
-    return render_template("/posts/post_data.html", type=type, title=title, lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user, url=url)
+        return render_template("/posts/post_data.html", type=type, title=title, lat=lat, long=long, neighbourhood=neighbourhood, text=text, board=board, user=user, url=url)
+    else:
+        return redirect("/")
 
 @app.route('/neighbourhoods/<int:neighbourhood_id>/read_posts')
 def read_posts(neighbourhood_id):
-    ngh = Neighbourhood.query.get_or_404(neighbourhood_id)
-    posts = ngh.posts
+    if g.user:
+        ngh = Neighbourhood.query.get_or_404(neighbourhood_id)
+        posts = ngh.posts
 
-    return render_template("/posts/read_posts.html", posts=posts)
+        return render_template("/posts/read_posts.html", posts=posts)
+    else:
+        return redirect("/")
 
 @app.route('/posts/<int:post_id>')
 def individual_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    lat = post.lat
-    long = post.long
+    if g.user:
+        post = Post.query.get_or_404(post_id)
+        lat = post.lat
+        long = post.long
 
-    return render_template("/posts/read_individual_post.html", post=post, lat=lat, long=long)
-
+        return render_template("/posts/read_individual_post.html", post=post, lat=lat, long=long)
+    else:
+        return redirect("/")
     
 @app.route('/myposts/<int:post_id>')
 def my_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    lat = post.lat
-    long = post.long
+    if g.user:
+        post = Post.query.get_or_404(post_id)
+        lat = post.lat
+        long = post.long
 
-    return render_template("/posts/read_my_post.html", post=post, lat=lat, long=long)
+        return render_template("/posts/read_my_post.html", post=post, lat=lat, long=long)
+    else:
+        return redirect("/")
 
 @app.route('/posts/<int:post_id>/delete')
 def post_destroy(post_id):
-    pst = Post.query.get_or_404(post_id)
+        pst = Post.query.get_or_404(post_id)
 
-    db.session.delete(pst)
-    db.session.commit()
+        db.session.delete(pst)
+        db.session.commit()
 
-    return redirect("/")
+        return redirect("/")
+ 
 
 
 

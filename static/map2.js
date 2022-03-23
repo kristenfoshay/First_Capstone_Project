@@ -7,7 +7,7 @@ let b = c[1];
 let myLatlng = new google.maps.LatLng(a, b);
 let map = new google.maps.Map(document.getElementById('map'), {
 	center : myLatlng,
-	zoom   : 15
+	zoom   : 18
 });
 
 // Place a draggable marker on the map
