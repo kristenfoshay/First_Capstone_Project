@@ -1,5 +1,6 @@
 <h1 align="center">
-    <img width="343" src="static/images/ranger-logo.png#gh-light-mode-only" alt="Ranger">
+    <img src="/static/images/ranger-logo.png" alt="logo">
+          <span><font face="Lobster, cursive" size="10px" color="#AC652F">Ranger</font></span>
     <br>
     <br>
 </h1>
