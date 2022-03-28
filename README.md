@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img width="100" src="static/images/ranger-logo.png#gh-light-mode-only" alt="Ranger">
+    <img width="100" src="static/images/ranger-logo-with-text.png#gh-light-mode-only" alt="Ranger">
     <br>
     <br>
 </h1>
