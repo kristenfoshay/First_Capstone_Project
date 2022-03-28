@@ -1,4 +1,8 @@
-# First_Capstone_Project
+<h1 align="center">
+    <img width="343" src="static/images/ranger-logo.png#gh-light-mode-only" alt="Ranger">
+    <br>
+    <br>
+</h1>
 
 # Ranger
 
