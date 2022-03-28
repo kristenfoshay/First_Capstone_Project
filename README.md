@@ -6,6 +6,8 @@ https://ranger-locater.herokuapp.com/
 
 ### A web application that allows users to make posts and read posts from other users to help find Lost Pets. Users have the ability to drop a marker on a map to indicate where their pet was lost or where they saw a stray pet in the area. 
 
+![lost dog poster](https://live.staticflickr.com/66/164290721_edd4c597f0_b.jpg ""Lost Dog - Red Nose Pitbull 'Sam' Call Tim at 778 846 2008 for $reward - Roland in Vancouver 2460" by roland is marked with CC0 1.0.")
+
 #### App Features Include:
 
 * Application will cover a larger geographical area across North America or Beyond but is currently restricted to the Greater Toronto Area for practical reasons.
@@ -36,3 +38,7 @@ https://ranger-locater.herokuapp.com/
 * run app.py using --- app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
 
 * run seed.py to populate database.
+
+![lost dog poster](https://live.staticflickr.com/66/164290721_edd4c597f0_b.jpg ""Lost Dog - Red Nose Pitbull 'Sam' Call Tim at 778 846 2008 for $reward - Roland in Vancouver 2460" by roland is marked with CC0 1.0.")
+
+
