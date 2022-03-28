@@ -2,6 +2,8 @@
 
 # Ranger
 
+https://ranger-locater.herokuapp.com/
+
 ### A web application that allows users to make posts and read posts from other users to help find Lost Pets. Users have the ability to drop a marker on a map to indicate where their pet was lost or where they saw a stray pet in the area. 
 
 #### App Features Include:
@@ -29,3 +31,8 @@
 * SQLAlchemy
 * Google Maps API
 
+#### To run locally:
+
+* run app.py using --- app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
+
+* run seed.py to populate database.
