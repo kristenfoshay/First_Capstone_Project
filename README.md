@@ -23,9 +23,9 @@ A web application that allows users to make posts and read posts from other user
 
 * Python
 * Javascript
+* jQuery
 * Bootstrap
 * Flask
-* Postgresql
 * SQLAlchemy
 * Google Maps API
 

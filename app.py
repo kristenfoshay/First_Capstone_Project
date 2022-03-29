@@ -9,8 +9,8 @@ CURR_USER_KEY = "curr_user"
 
 app = Flask(__name__)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1) or  'postgresql:///ranger'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1) or  'postgresql:///ranger'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///ranger'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
@@ -137,11 +137,22 @@ def eastend():
     else:
         return redirect("/")
 
-@app.route('/leslieville')
-def leslieville():
-    """If user logged in, route to form for Leslieville."""
+@app.route('/create_or_read_post_leslieville')
+def create_or_read():
     if g.user:
         neighbourhood = Neighbourhood.query.get(1)
+        return render_template('east-end-regions/create-or-read-post.html', neighbourhood=neighbourhood)
+        """Otherwise redirect to home."""
+    else:
+        return redirect("/")
+
+@app.route('/neighbourhoods/<int:neighbourhood_id>/create_posts')
+def leslieville(neighbourhood_id):
+    """If user logged in, route to form to create post in Leslieville."""
+    if g.user:
+         
+        neighbourhood = Neighbourhood.query.get_or_404(neighbourhood_id)
+        
         return render_template('east-end-regions/neighbourhood.html', neighbourhood=neighbourhood)
         """Otherwise redirect to home."""
     else:

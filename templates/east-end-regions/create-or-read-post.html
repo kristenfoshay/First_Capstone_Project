@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    
+
+    <h1><font face="Lobster, cursive" size="10px" color="#2E3135">You've selected {{neighbourhood.name}}!</font></h1>
+
+    <font face="Cabin" size="4.5px">
+    <p><a href="/neighbourhoods/{{neighbourhood.id}}/create_posts">Do you want to create a post for this Neighbourhood? Click Here.</a></p>
+    <p><a href="/neighbourhoods/{{neighbourhood.id}}/read_posts">Or do you want to read Read Posts for this Neighbourhood? Click Here.</a></p>
+</font>
+
+    
+<img src="/static/images/area-map-leslieville.png" alt="area map of selected neighbourhood">
+
+
+
+        
+         
+     
+  
+{% endblock %}

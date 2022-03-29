@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div id='map_canvas'></div>
-    
+    4
 
     <h1><font face="Lobster, cursive" size="10px" color="#2E3135">You've selected {{neighbourhood.name}}!</font></h1>
 
@@ -31,7 +31,7 @@
           <input type="text" class="form-control" id="title" name="title" placeholder="Example: Pink Flamingo lost at Corner of Leslie and Queen" required="" value=>
           <label for="textarea">Describe the pet that you lost or the stray pet that you saw roaming the area. Be as detailed as you can so the pet can be found!</label><br>
           
-          <textarea class="form-control" type="textarea" name="text-input" id="text-input" placeholder="Example: Hi, My Pink Flamingo ran away from me at the corner of Leslie and Queen. He is 2 years old and very timid. Please do not yell at him. He will run away. I'm including a URL link to his most recent photo!" maxlength="6000" rows="7"></textarea>
+          <textarea class="form-control" type="textarea" name="text-input" id="text-input" placeholder="Example: Hi, My Pink Flamingo ran away from me at the corner of Leslie and Queen. He is 2 years old and very timid. Please do not yell at him. He will run away. I'm including his most recent photo!" maxlength="6000" rows="7"></textarea>
           <label for="myURL">Add the URL of the image you'd like to add to the post:</label><br>
           <input id="imageurl" class="form-control" name="imageurl" type="url" placeholder="http://www.example.com">
         <font face="Lobster, cursive" size="10px">
@@ -43,7 +43,7 @@
          
      
 <script src="https://unpkg.com/jquery"></script>   
-<script src="static/map.js"></script>  
+<script src="/static/create-map.js"></script>  
 {% endblock %}
 
     
