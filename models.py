@@ -139,7 +139,7 @@ class Post(db.Model):
     neighbourhood_id = db .Column(
         db.Integer,
         db.ForeignKey('neighbourhood.id', ondelete='CASCADE'),
-        nullable=False,
+        nullable=True,
     )
 
     title = db.Column(
@@ -164,7 +164,7 @@ class Post(db.Model):
 
     timestamp = db.Column(
         db.DateTime,
-        nullable=False,
+        nullable=True,
         default=datetime.utcnow(),
     )
 
