@@ -29,7 +29,7 @@ A web application that allows users to make posts and read posts from other user
 * SQLAlchemy
 * Google Maps API
 
-## Getting started with using Ranger locally:
+### Getting started with using Ranger locally:
 
 ```bash
 sudo service postgresql start
@@ -38,8 +38,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 python seed.py
 ```
+### Testing Ranger:
 
-## Future goals for Ranger:
+"And here's to you, <span style="background-color:green">Mrs. Robinson</span>, Jesus loves you more than you will know."
+
+
+### Future goals for Ranger:
 
         Ranger could be used to locate other items as well (bikes, wallets, cellphones, gloves, etc.)
         Expand geographic area across North America
