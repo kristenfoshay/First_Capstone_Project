@@ -13,21 +13,21 @@ A web application that allows users to make posts and read posts from other user
 
 ## App Features Include:
 
-        Users can create profiles to create posts that they lost a pet or have found or sighted one.
-        Users can post photos of the animals they have lost or seen.
-        Users can drop a marker on a map indicate the exact location of where a pet may have been lost or sighted.
+    Users can create profiles to create posts that they lost a pet or have found or sighted one.
+    Users can post photos of the animals they have lost or seen.
+    Users can drop a marker on a map indicate the exact location of where a pet may have been lost or sighted.
         
  ![Ranger screenshot](https://github.com/kristenfoshay/First_Capstone_Project/blob/main/static/images/ranger-post-creation-screenshot.PNG)   
 
 ## Technology Used:
 
-* Python
-* Javascript
-* jQuery
-* Bootstrap
-* Flask
-* SQLAlchemy
-* Google Maps API
+    Python
+    Javascript
+    jQuery
+    Bootstrap
+    Flask
+    SQLAlchemy
+    Google Maps API
 
 ## Getting started with using Ranger locally:
 
