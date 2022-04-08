@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img width="350" src="https://github.com/kristenfoshay/First_Capstone_Project/blob/main/static/images/ranger-logo-with-text.PNG#gh-dark-mode-only" alt="Ranger">
+    <img width="350" src="https://github.com/kristenfoshay/First_Capstone_Project/blob/main/static/images/ranger-logo-with-text.PNG#gh-light-mode-only" alt="Ranger">
     <br>
     <br>
 </h1>
